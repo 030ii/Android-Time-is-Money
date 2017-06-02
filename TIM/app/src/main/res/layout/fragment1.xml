@@ -15,5 +15,6 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="다음" />
+        android:onClick="onTimerStartClicked"
+        android:text="타이머 시작하기" />
 </LinearLayout>
