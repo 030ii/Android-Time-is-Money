@@ -14,13 +14,13 @@ public class TimerActivity extends AppCompatActivity {
     private boolean running;
     private boolean wasRunnig;
     TextView timer;
+//    ImageView startBtn;
+    CircleProgressBar circleProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-//        Button back_button = (Button) findViewById(R.id.back_btn);
 
         if(savedInstanceState!=null){
             running = savedInstanceState.getBoolean("runningState");
@@ -32,6 +32,15 @@ public class TimerActivity extends AppCompatActivity {
         timer = (TextView)findViewById(R.id.timer);
         runTimer();
 
+        circleProgressBar = (CircleProgressBar) findViewById(R.id.custom_progressBar);
+        circleProgressBar.setProgressWithAnimation(50);
+
+//        startBtn = (ImageView) findViewById(R.id.start);
+//        startBtn.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // Your code.
+//            }
+//        });
     }
 
     public void onBackBtnClicked (View v){
@@ -44,6 +53,8 @@ public class TimerActivity extends AppCompatActivity {
 
     public void onTimerStart(View view) {
         running = true;
+
+//        circleProgressBar.setProgressWithAnimation(100);
     }
 
     public void onTimerStop(View view) {

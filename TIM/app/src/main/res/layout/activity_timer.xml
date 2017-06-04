@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="com.example.helllo.tim.SettingActivity">
+    tools:context="com.example.helllo.tim.TimerActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -45,21 +45,54 @@
         app:srcCompat="@drawable/setting"
         android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/timer"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/white"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+        <com.example.helllo.tim.CircleProgressBar
+            android:id="@+id/custom_progressBar"
+            android:layout_width="322dp"
+            android:layout_height="288dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.474"
+            app:progress="35"
+            app:progressBarThickness="4dp" />
+
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="0:00:00"
+            android:textColor="@android:color/white"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.548" />
+    </FrameLayout>
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -70,49 +103,81 @@
         tools:layout_editor_absoluteY="417dp"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/startButton"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:onClick="onTimerStart"
-        android:text="start"
+        android:layout_height="90dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        android:layout_marginLeft="64dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintVertical_bias="0.48"
+        android:layout_marginTop="8dp">
 
-    <Button
-        android:id="@+id/stopButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:onClick="onTimerStop"
-        android:text="stop"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintLeft_toRightOf="@+id/startButton"
-        android:layout_marginLeft="10dp" />
+        <ImageView
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            android:layout_weight="1"
+            android:onClick="onTimerStart"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
+            app:srcCompat="@drawable/play" />
 
-    <Button
-        android:id="@+id/resetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:onClick="onTimerReset"
-        android:text="reset"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintLeft_toRightOf="@+id/stopButton"
-        android:layout_marginLeft="8dp" />
+        <ImageView
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            android:layout_weight="1"
+            android:onClick="onTimerStop"
+            app:layout_constraintLeft_toRightOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
+            app:srcCompat="@drawable/stop" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/info"-->
-        <!--android:layout_width="0dp"-->
+    </LinearLayout>
+
+    <!--<Button-->
+        <!--android:id="@+id/startButton"-->
+        <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:textSize="30sp"-->
-        <!--android:textStyle="bold"-->
-        <!--tools:layout_editor_absoluteY="0dp"-->
-        <!--tools:layout_editor_absoluteX="8dp" />-->
+        <!--android:layout_marginTop="47dp"-->
+        <!--android:onClick="onTimerStart"-->
+        <!--android:text="start"-->
+        <!--android:drawableLeft="@drawable/play"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/guideline4"-->
+        <!--android:layout_marginLeft="64dp"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent" />-->
 
+    <!--<Button-->
+        <!--android:id="@+id/stopButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="47dp"-->
+        <!--android:onClick="onTimerStop"-->
+        <!--android:text="stop"-->
+        <!--android:drawableLeft="@drawable/stop"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/guideline4"-->
+        <!--app:layout_constraintLeft_toRightOf="@+id/startButton"-->
+        <!--android:layout_marginLeft="10dp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/resetButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="47dp"-->
+        <!--android:onClick="onTimerReset"-->
+        <!--android:text="reset"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/guideline4"-->
+        <!--app:layout_constraintLeft_toRightOf="@+id/stopButton"-->
+        <!--android:layout_marginLeft="8dp" />-->
 
 </android.support.constraint.ConstraintLayout>
 
