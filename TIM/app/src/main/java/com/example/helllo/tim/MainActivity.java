@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     Fragment2 fragment2;
     Fragment3 fragment3;
     Button button;
-    final int REQUEST_CODE = 1001; // 타이머 엑티비티
+    final int REQUEST_CODE_TIMER = 1001; // 타이머 엑티비티
+    final int REQUEST_CODE_SETTING = 1002; // 세팅 엑티비티
 
 
     @Override
@@ -73,13 +75,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTimerStartClicked (View v){
         Intent intent = new Intent(getApplicationContext(), TimerActivity.class);
-        startActivityForResult(intent, REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE_TIMER);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
+        switch(resultCode){
+            case REQUEST_CODE_TIMER:
+                Log.e("asdf", "timer에서 돌아옴");
+                break;
+            case REQUEST_CODE_SETTING:
+                Log.e("asdf", "setting에서 돌아옴");
+                break;
+        }
     }
 }

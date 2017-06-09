@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/back"
+        android:onClick="onBackBtnClicked"
         android:layout_marginStart="8dp" />
 
     <ImageView
@@ -121,7 +122,7 @@
         android:layout_marginTop="8dp">
 
         <ImageView
-            android:id="@+id/start"
+            android:id="@+id/startOrPause"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="25dp"
@@ -143,50 +144,4 @@
             app:srcCompat="@drawable/stop" />
 
     </LinearLayout>
-
-    <!--<Button-->
-        <!--android:id="@+id/startButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="47dp"-->
-        <!--android:onClick="onTimerStart"-->
-        <!--android:text="start"-->
-        <!--android:drawableLeft="@drawable/play"-->
-        <!--app:layout_constraintTop_toTopOf="@+id/guideline4"-->
-        <!--android:layout_marginLeft="64dp"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent" />-->
-
-    <!--<Button-->
-        <!--android:id="@+id/stopButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="47dp"-->
-        <!--android:onClick="onTimerStop"-->
-        <!--android:text="stop"-->
-        <!--android:drawableLeft="@drawable/stop"-->
-        <!--app:layout_constraintTop_toTopOf="@+id/guideline4"-->
-        <!--app:layout_constraintLeft_toRightOf="@+id/startButton"-->
-        <!--android:layout_marginLeft="10dp" />-->
-
-    <!--<Button-->
-        <!--android:id="@+id/resetButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="47dp"-->
-        <!--android:onClick="onTimerReset"-->
-        <!--android:text="reset"-->
-        <!--app:layout_constraintTop_toTopOf="@+id/guideline4"-->
-        <!--app:layout_constraintLeft_toRightOf="@+id/stopButton"-->
-        <!--android:layout_marginLeft="8dp" />-->
-
 </android.support.constraint.ConstraintLayout>
-
-
-    <!--<Button-->
-        <!--android:id="@+id/back_btn"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="#00ffffff"-->
-        <!--android:drawableLeft="@drawable/back"-->
-        <!--android:onClick="onBackBtnClicked" />-->
-
