@@ -3,9 +3,17 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/settingBg</item>
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="switch_style">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">#393939</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>

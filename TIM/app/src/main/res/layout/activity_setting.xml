@@ -1,160 +1,325 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="타이머 모드 설정"
-        android:textSize="24sp" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/settingBg">
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="포모도로 모드  " />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:text="목표 시간 설정"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-        <Switch
-            android:id="@+id/switch1"
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:thumb="@drawable/switch_thumb_selector"
-            android:track="@drawable/switch_track_selector" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="64dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="64dp" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:onClick="onBackBtnClicked"
+            android:padding="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:padding="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/setting" />
+
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text="  포도 모드" />
-    </LinearLayout>
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:paddingLeft="10dp"
+            android:text="타이머 모드 설정"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="시간 설정"
-        android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=" 집중 시간" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/settingSectionBg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <SeekBar
-            android:id="@+id/seekFocus"
-            android:layout_width="320dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_weight="0.84"
-            android:max="99"
-            android:progress="25" />
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:paddingRight="0dp"
+                android:showText="true"
+                android:switchTextAppearance="@style/switch_style"
+                android:textOff="뽀모도로"
+                android:textOn="일반"
+                android:thumb="@drawable/switch_thumb_selector"
+                android:track="@drawable/switch_track_selector"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
-        <TextView
-            android:id="@+id/textFocus"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/seekFocus"
-            android:layout_toRightOf="@+id/seekFocus"
-            android:layout_weight="0.33"
-            android:gravity="left|center"
-            android:text="25분"
-            android:textSize="16sp" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/timerInfo"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=" 쉬는 시간" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <SeekBar
-            android:id="@+id/seekRest"
-            android:layout_width="320dp"
-            android:layout_height="30dp"
-            android:layout_weight="0.72"
-            android:max="29"
-            android:progress="5" />
-
-        <TextView
-            android:id="@+id/textRest"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/seekRest"
-            android:layout_toRightOf="@+id/seekRest"
-            android:layout_weight="0.33"
-            android:gravity="left|center"
-            android:text="5분"
-            android:textSize="16sp" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=" 목표 시간" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <SeekBar
-            android:id="@+id/seekGoal"
-            android:layout_width="320dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_weight="0.84"
-            android:max="23"
-            android:progress="4" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textGoal"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/seekGoal"
-            android:layout_toRightOf="@+id/seekGoal"
-            android:layout_weight="0.33"
-            android:gravity="left|center"
-            android:text="2시간"
-            android:textSize="16sp" />
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:text="뽀모도로 시간 설정"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-    </RelativeLayout>
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/settingSectionBg"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="집중 시간"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <SeekBar
+                android:id="@+id/seekFocus"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="0.27"
+                android:max="5999"
+                android:progress="1500"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:thumb="@drawable/seekbar_thumb"/>
+
+            <TextView
+                android:id="@+id/textFocus"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/seekFocus"
+                android:layout_toRightOf="@+id/seekFocus"
+                android:layout_weight="0.33"
+                android:gravity="left|center"
+                android:text="25분"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/settingSectionBg"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="휴식 시간"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="-7dp"
+                tools:layout_editor_absoluteY="144dp" />
+
+            <SeekBar
+                android:id="@+id/seekRest"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_weight="0.27"
+                android:max="1799"
+                android:progress="300"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:thumb="@drawable/seekbar_thumb"/>
+
+            <TextView
+                android:id="@+id/textRest"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/seekRest"
+                android:layout_toRightOf="@+id/seekRest"
+                android:layout_weight="0.33"
+                android:gravity="left|center"
+                android:text="5분"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/settingSectionBg"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:text="목표 시간"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="387dp" />
+
+            <SeekBar
+                android:id="@+id/seekGoal"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="0.27"
+                android:max="41400"
+                android:progress="7200"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:thumb="@drawable/seekbar_thumb"/>
+
+            <TextView
+                android:id="@+id/textGoal"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/seekGoal"
+                android:layout_toRightOf="@+id/seekGoal"
+                android:layout_weight="0.33"
+                android:gravity="left|center"
+                android:text="2시간"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

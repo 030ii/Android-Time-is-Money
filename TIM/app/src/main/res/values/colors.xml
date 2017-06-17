@@ -3,4 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="progressNomal">#6b328c</color>
+    <color name="progressPomodoro">#8c3232</color>
+    <color name="progressRest">#328c8b</color>
+
+    <color name="primary">#FF61A8</color>
+
+    <color name="settingBg">#242d37</color>
+    <color name="settingSectionBg">#2E3840</color>
+    <color name="settingSectionBar">#343d45</color>
+    <color name="settingSeekBarBg">#4C545A</color>
+    <color name="settingPomoTimer">#CC4949</color>
+    <color name="settingNormalTimer">#9C49CC</color>
 </resources>
