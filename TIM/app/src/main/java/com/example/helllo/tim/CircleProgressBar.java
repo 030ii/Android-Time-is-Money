@@ -18,7 +18,7 @@ public class CircleProgressBar extends View {
     private float progress = 0;
     private int min = 0;
 //    private int max = 3600; // 1시간마다 한바퀴
-    private int max = 10;
+    private int max = 60;
 
     /* Start the progress at 12 o'clock */
     private int startAngle = -90;
@@ -148,24 +148,33 @@ public class CircleProgressBar extends View {
         return Color.argb(alpha, red, green, blue);
     }
 
-    /* 프로그래스바 애니메이션 */
-    public void setProgressWithAnimation(float progress) {
-        setProgress(getProgress());
-        int remain = (max - (int)getProgress());
-        anim = ObjectAnimator.ofFloat(this, "progress", progress);
-        anim.setDuration(remain*1000);
-        anim.start();
-    }
-
-    public void startAnimation() {
-        anim.start();
-    }
-
+//    /* 프로그래스바 애니메이션 */
+//    public void setProgressWithAnimation(float progress) {
+//        /*
+//         * 프로그래스바 애니메이션 일시정지 시 이어서 다시 움직이도록 세팅
+//         *
+//         * int remain = (max - (int)getProgress());
+//         * anim = ObjectAnimator.ofFloat(this, "progress", progress);
+//         * anim.setDuration(remain*1000);
+//         * anim.start();
+//         */
+//
+//        // 1초마다 움직이는 동작하는 애니메이션 -> 효율을 위해 일단 삭제
+//        anim = ObjectAnimator.ofFloat(this, "progress", progress);
+//        anim.setDuration(1000);
+//        anim.start();
+//    }
+//
+//    public void startAnimation() {
+//        anim.start();
+//    }
+//
 //    public void endAnimation() {
 //        anim.end();
 //    }
+//
+//    public void pauseAnimation() {
+//        anim.cancel();
+//    }
 
-    public void pauseAnimation() {
-        anim.cancel();
-    }
 }

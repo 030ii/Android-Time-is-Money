@@ -78,16 +78,12 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 if((boolean)startOrPause.getTag()){ // 재생 버튼이 보이는 상태에서 클릭했다면, 일시정지 버튼으로 바꿔주고 타이머 실행
                     startOrPause.setImageResource(pause);
                     startOrPause.setTag(PAUSE);
-
-                    circleProgressBar.setProgressWithAnimation(10);
-
+//                    circleProgressBar.setProgressWithAnimation(10);
                     onTimerStart();
-
                 }else{ // 일시정지 버튼이 보이는 상태에서 클릭했다면, 재생 버튼으로 바꿔주고 타이머 멈춤
                     startOrPause.setImageResource(play);
                     startOrPause.setTag(PLAY);
-                    circleProgressBar.pauseAnimation();
-
+//                    circleProgressBar.pauseAnimation();
                     onTimerStop();
                 }
                 break;
@@ -144,6 +140,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             public void run() {
                 if (running) {
                     seconds++;
+                    circleProgressBar.setProgress(seconds%60);
 //                    if (seconds > 0) seconds--;
                 }
                 handler.postDelayed(this, 1000);
@@ -151,7 +148,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 int hours = seconds / 3600;
                 int minutes = (seconds % 3600) / 60;
                 int secs = seconds % 60;
-
                 String time = String.format("%d:%02d:%02d", hours, minutes, secs); // 타이머 형태
                 timer.setText(time); // 화면에 표시
             }
