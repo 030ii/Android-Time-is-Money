@@ -17,7 +17,8 @@ public class CircleProgressBar extends View {
     private float strokeWidth = 4;
     private float progress = 0;
     private int min = 0;
-    private int max = 3600; // 1시간마다 한바퀴
+//    private int max = 3600; // 1시간마다 한바퀴
+    private int max = 10;
 
     /* Start the progress at 12 o'clock */
     private int startAngle = -90;
@@ -25,6 +26,8 @@ public class CircleProgressBar extends View {
     private RectF rectF;
     private Paint backgroundPaint;
     private Paint foregroundPaint;
+
+    private ObjectAnimator anim; // 프로그래스바 자연스럽게 움직이도록 애니메이션
 
     public float getStrokeWidth() {
         return strokeWidth;
@@ -145,14 +148,24 @@ public class CircleProgressBar extends View {
         return Color.argb(alpha, red, green, blue);
     }
 
-
+    /* 프로그래스바 애니메이션 */
     public void setProgressWithAnimation(float progress) {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "progress", progress);
-        objectAnimator.setDuration(1000);
-        objectAnimator.start();
+        setProgress(getProgress());
+        int remain = (max - (int)getProgress());
+        anim = ObjectAnimator.ofFloat(this, "progress", progress);
+        anim.setDuration(remain*1000);
+        anim.start();
     }
 
-//    public void setProgressStop(){
-//
+    public void startAnimation() {
+        anim.start();
+    }
+
+//    public void endAnimation() {
+//        anim.end();
 //    }
+
+    public void pauseAnimation() {
+        anim.cancel();
+    }
 }

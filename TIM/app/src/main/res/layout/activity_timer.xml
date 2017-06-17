@@ -12,30 +12,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="64dp"
-        tools:layout_editor_absoluteY="64dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintGuide_begin="58dp" />
 
     <ImageView
         android:id="@+id/back"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="onBackBtnClicked"
         android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/back"
-        android:onClick="onBackBtnClicked"
-        android:layout_marginStart="8dp" />
+        app:srcCompat="@drawable/back" />
 
     <ImageView
         android:id="@+id/setting"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="right"
+        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:padding="15dp"
@@ -43,8 +42,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/setting"
-        android:layout_marginEnd="8dp" />
+        app:srcCompat="@drawable/setting" />
 
     <FrameLayout
         android:layout_width="wrap_content"

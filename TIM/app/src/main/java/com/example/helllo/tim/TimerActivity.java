@@ -61,6 +61,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         startOrPause.setOnClickListener(this);
         stop.setOnClickListener(this);
 
+//        circleProgressBar.setProgressWithAnimation(10);
     }
 
     /* 각 이미지뷰 클릭 이벤트 처리 */
@@ -77,12 +78,16 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 if((boolean)startOrPause.getTag()){ // 재생 버튼이 보이는 상태에서 클릭했다면, 일시정지 버튼으로 바꿔주고 타이머 실행
                     startOrPause.setImageResource(pause);
                     startOrPause.setTag(PAUSE);
-//                    circleProgressBar.setProgressWithAnimation(60);
+
+                    circleProgressBar.setProgressWithAnimation(10);
+
                     onTimerStart();
 
                 }else{ // 일시정지 버튼이 보이는 상태에서 클릭했다면, 재생 버튼으로 바꿔주고 타이머 멈춤
                     startOrPause.setImageResource(play);
                     startOrPause.setTag(PLAY);
+                    circleProgressBar.pauseAnimation();
+
                     onTimerStop();
                 }
                 break;
@@ -116,7 +121,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     /* 타이머 시작 메서드 */
     public void onTimerStart() {
         running = true;
-//        circleProgressBar.setProgressWithAnimation(100);
     }
 
     /* 타이머 정지 메서드 */
@@ -138,18 +142,18 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         handler.post(new Runnable() {
             @Override
             public void run() {
+                if (running) {
+                    seconds++;
+//                    if (seconds > 0) seconds--;
+                }
+                handler.postDelayed(this, 1000);
+
                 int hours = seconds / 3600;
                 int minutes = (seconds % 3600) / 60;
                 int secs = seconds % 60;
 
                 String time = String.format("%d:%02d:%02d", hours, minutes, secs); // 타이머 형태
                 timer.setText(time); // 화면에 표시
-                if (running) {
-                    circleProgressBar.setProgressWithAnimation(seconds%3600);
-                    seconds++;
-//                    if (seconds > 0) seconds--;
-                }
-                handler.postDelayed(this, 1000);
             }
         });
     }
