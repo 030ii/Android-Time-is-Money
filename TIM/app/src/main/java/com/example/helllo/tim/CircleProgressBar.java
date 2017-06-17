@@ -10,22 +10,18 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 
 public class CircleProgressBar extends View {
 
-    /**
-     * ProgressBar's line thickness
-     */
+    /* ProgressBar's line thickness */
     private float strokeWidth = 4;
     private float progress = 0;
     private int min = 0;
-    private int max = 100;
-    /**
-     * Start the progress at 12 o'clock
-     */
+    private int max = 3600; // 1시간마다 한바퀴
+
+    /* Start the progress at 12 o'clock */
     private int startAngle = -90;
-    private int color = Color.DKGRAY;
+    private int color = getResources().getColor(R.color.progressPomodoro);
     private RectF rectF;
     private Paint backgroundPaint;
     private Paint foregroundPaint;
@@ -121,7 +117,6 @@ public class CircleProgressBar extends View {
         canvas.drawOval(rectF, backgroundPaint);
         float angle = 360 * progress / max;
         canvas.drawArc(rectF, startAngle, angle, false, foregroundPaint);
-
     }
 
     @Override
@@ -132,24 +127,6 @@ public class CircleProgressBar extends View {
         final int min = Math.min(width, height);
         setMeasuredDimension(min, min);
         rectF.set(0 + strokeWidth / 2, 0 + strokeWidth / 2, min - strokeWidth / 2, min - strokeWidth / 2);
-    }
-
-    /**
-     * Lighten the given color by the factor
-     *
-     * @param color  The color to lighten
-     * @param factor 0 to 4
-     * @return A brighter color
-     */
-    public int lightenColor(int color, float factor) {
-        float r = Color.red(color) * factor;
-        float g = Color.green(color) * factor;
-        float b = Color.blue(color) * factor;
-        int ir = Math.min(255, (int) r);
-        int ig = Math.min(255, (int) g);
-        int ib = Math.min(255, (int) b);
-        int ia = Color.alpha(color);
-        return (Color.argb(ia, ir, ig, ib));
     }
 
     /**
@@ -170,10 +147,12 @@ public class CircleProgressBar extends View {
 
 
     public void setProgressWithAnimation(float progress) {
-
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "progress", progress);
-        objectAnimator.setDuration(1500);
-        objectAnimator.setInterpolator(new DecelerateInterpolator());
+        objectAnimator.setDuration(1000);
         objectAnimator.start();
     }
+
+//    public void setProgressStop(){
+//
+//    }
 }

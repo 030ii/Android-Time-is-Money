@@ -45,7 +45,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
 
         /* 커스텀할 프로그레스바 */
         circleProgressBar = (CircleProgressBar) findViewById(R.id.custom_progressBar);
-        circleProgressBar.setProgressWithAnimation(1800);
 
         /* 이미지뷰 참조 */
         ImageView back = (ImageView) findViewById(R.id.back);
@@ -78,7 +77,9 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 if((boolean)startOrPause.getTag()){ // 재생 버튼이 보이는 상태에서 클릭했다면, 일시정지 버튼으로 바꿔주고 타이머 실행
                     startOrPause.setImageResource(pause);
                     startOrPause.setTag(PAUSE);
+//                    circleProgressBar.setProgressWithAnimation(60);
                     onTimerStart();
+
                 }else{ // 일시정지 버튼이 보이는 상태에서 클릭했다면, 재생 버튼으로 바꿔주고 타이머 멈춤
                     startOrPause.setImageResource(play);
                     startOrPause.setTag(PLAY);
@@ -144,6 +145,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 String time = String.format("%d:%02d:%02d", hours, minutes, secs); // 타이머 형태
                 timer.setText(time); // 화면에 표시
                 if (running) {
+                    circleProgressBar.setProgressWithAnimation(seconds%3600);
                     seconds++;
 //                    if (seconds > 0) seconds--;
                 }
