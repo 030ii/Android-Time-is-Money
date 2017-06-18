@@ -28,14 +28,8 @@ public class SettingActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_setting);
 
-
         setting = getSharedPreferences("setting", Activity.MODE_PRIVATE);
         editor = setting.edit();
-//        editor.putString("setting_test", "asdf");
-//        editor.commit();
-
-
-
 
         seekFocus = (SeekBar) findViewById(R.id.seekFocus);
         seekRest = (SeekBar) findViewById(R.id.seekRest);
@@ -53,10 +47,10 @@ public class SettingActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked == true) { // 일반 타이머 모드
                     mode.setTextOn("일반");
-                    putIntProgress("mode", 2); // mode 값이 2이면 일반 타이머 모드
+                    putIntProgress("mode", 1); // mode 값이 2이면 일반 타이머 모드
                 } else { // 뽀모도로 타이머 모드
                     mode.setTextOff("뽀모도로");
-                    putIntProgress("mode", 1); // mode 값이 1이면 뽀모도로 타이머 모드
+                    putIntProgress("mode", 0); // mode 값이 1이면 뽀모도로 타이머 모드
 
                 }
             }
@@ -81,7 +75,9 @@ public class SettingActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                putIntProgress("focus", seekBar.getProgress());
+                int progress = seekBar.getProgress();
+                int time = (progress/60 + 1) * 60; // progress값이 초 단위이므로 분 단위로 바꾸면 초 단위가 버림으로 되므로 + 1분 해준후 다시 초단위로 바꿈
+                putIntProgress("focus", time);
             }
         });
 
@@ -100,7 +96,9 @@ public class SettingActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                putIntProgress("rest", seekBar.getProgress());
+                int progress = seekBar.getProgress();
+                int time = (progress/60 + 1) * 60;
+                putIntProgress("rest", time);
             }
         });
 
@@ -125,7 +123,9 @@ public class SettingActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                putIntProgress("goal", seekBar.getProgress());
+                int progress = seekBar.getProgress();
+                int time = (progress/60 + 1) * 60;
+                putIntProgress("goal", time);
             }
         });
     }
@@ -146,26 +146,26 @@ public class SettingActivity extends AppCompatActivity {
     /* 이전에 설정한 값이 있다면 값 불러오기 */
     protected void restoreState(){
         if(setting != null){
-            if(setting.getInt("mode",0) == 1){
-                mode.setChecked(false);
-            } else if(setting.getInt("mode",0) == 2){
+            if(setting.getInt("mode",0) == 1){ // 일반 모드 = 1
                 mode.setChecked(true);
+            } else { // 뽀모도로 모드
+                mode.setChecked(false);
             }
 
             if(setting.contains("focus")){
-                setProgressTextView("focus", seekFocus, textFocus);
+                setProgressTextView("focus", seekFocus, textFocus, 1500);
             }
             if(setting.contains("rest")){
-                setProgressTextView("rest", seekRest, textRest);
+                setProgressTextView("rest", seekRest, textRest, 300);
             }
             if(setting.contains("goal")){
-                setProgressTextView("goal", seekGoal, textGoal);
+                setProgressTextView("goal", seekGoal, textGoal, 7200);
             }
         }
     }
 
-    private void setProgressTextView(String key, SeekBar seekBar, TextView textView){
-        int progress = setting.getInt(key,0);
+    private void setProgressTextView(String key, SeekBar seekBar, TextView textView, int setDefault){
+        int progress = setting.getInt(key, setDefault);
         seekBar.setProgress(progress);
 
         if(progress >= 3600) {
