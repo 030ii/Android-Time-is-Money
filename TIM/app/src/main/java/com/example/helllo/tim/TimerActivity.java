@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -43,7 +45,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
 
     CircleProgressBar circleProgressBar;
 
-
     SharedPreferences setting;
     SharedPreferences.Editor editor;
 
@@ -55,6 +56,12 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     long now;
     Date date;
     SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
+
+    /* db를 위한 변수 */
+    String sql;
+    Cursor cursor;
+    SQLiteDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +87,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         /* timer 연동 */
         timer = (TextView)findViewById(R.id.timer);
         runTimer();
+
+        openDatabase("Tim.db");
 
         /* 커스텀할 프로그레스바 */
         circleProgressBar = (CircleProgressBar) findViewById(R.id.custom_progressBar);
@@ -301,9 +310,14 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(DialogInterface dialog, int whichButton){
 
                 if(timerMode == 1){ // 일반 모드일 경우
+//                    dbHelper.insert(getTime(), seconds);
+                    insertWork(getTime(), seconds);
                     onTimerReset();
                     seconds = 0;
+
                 } else {
+//                    dbHelper.insert(getTime(), maxProgress);
+                    insertWork(getTime(), maxProgress);
                     setPomodoroTimer("rest", 300, progressRest);
                     pomodoroMode = false;
                     startOrPause.setImageResource(pause);
@@ -373,5 +387,18 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         AlertDialog dialog = builder.create();
 
         return dialog;
+    }
+
+    public void openDatabase(String databaseName) {
+        database = this.openOrCreateDatabase(databaseName, MODE_PRIVATE, null);
+    }
+
+    // work 테이블 입력 메소드
+    public void insertWork(String date, int time) {
+        String sql = "insert into work (w_date, w_time) values(?, ?);";
+
+        Object[] params = {date, time};
+
+        database.execSQL(sql, params);
     }
 }
