@@ -123,8 +123,8 @@ public class SettingActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                int progress = seekBar.getProgress();
-                int time = (progress/60 + 1) * 60;
+                int progress = seekBar.getProgress() + 1800;
+                int time = progress - progress%1800 ;
                 putIntProgress("goal", time);
             }
         });
