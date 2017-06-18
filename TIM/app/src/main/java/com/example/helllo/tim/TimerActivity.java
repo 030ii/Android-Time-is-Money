@@ -1,12 +1,15 @@
 package com.example.helllo.tim;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.example.helllo.tim.R.drawable.pause;
 import static com.example.helllo.tim.R.drawable.play;
@@ -26,6 +29,10 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
 
     CircleProgressBar circleProgressBar;
 
+
+    SharedPreferences asdf;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,15 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         }
 
         setContentView(R.layout.activity_timer);
+
+
+
+        asdf = getSharedPreferences("setting", Activity.MODE_PRIVATE);
+        int asdftest = asdf.getInt("focus", 0);
+        Toast.makeText(getApplicationContext(), "정보 : " + asdftest, Toast.LENGTH_LONG).show();
+
+
+
 
         /* timer 연동 */
         timer = (TextView)findViewById(R.id.timer);
