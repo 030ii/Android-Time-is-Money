@@ -19,5 +19,4 @@
         <activity android:name=".TimerActivity" />
         <activity android:name=".SettingActivity" />
     </application>
-
 </manifest>
