@@ -8,12 +8,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="495dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
         android:background="@drawable/hourclock"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -39,10 +35,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.115" />
+                app:layout_constraintVertical_bias="0.115"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/todayFocus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -55,10 +53,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.242" />
+                app:layout_constraintVertical_bias="0.242"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/todayCoin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -71,7 +71,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.301" />
+                app:layout_constraintVertical_bias="0.301"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
 
         </android.support.constraint.ConstraintLayout>
@@ -91,7 +93,9 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintVertical_bias="0.447"
-        app:layout_constraintHorizontal_bias="0.49" />
+        app:layout_constraintHorizontal_bias="0.49"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -107,7 +111,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.544"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.499"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -123,7 +129,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.42"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.499"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -139,7 +147,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.597"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintVertical_bias="0.577"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -155,7 +165,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintVertical_bias="0.577"
-        app:layout_constraintHorizontal_bias="0.489" />
+        app:layout_constraintHorizontal_bias="0.489"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -171,7 +183,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.662"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintVertical_bias="0.635"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -187,7 +201,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintVertical_bias="0.635"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -203,7 +219,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintVertical_bias="0.635"
-        app:layout_constraintHorizontal_bias="0.411" />
+        app:layout_constraintHorizontal_bias="0.411"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -219,7 +237,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.292"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintVertical_bias="0.635"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/imageView13"
@@ -235,14 +255,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.357"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintVertical_bias="0.577"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onTimerStartClicked"
         android:text="Button"
-        tools:layout_editor_absoluteY="447dp"
-        tools:layout_editor_absoluteX="141dp" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.872" />
 
 </android.support.constraint.ConstraintLayout>

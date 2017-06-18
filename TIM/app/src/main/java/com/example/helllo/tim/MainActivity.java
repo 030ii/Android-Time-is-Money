@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         sql = "delete from quest";
         database.execSQL(sql);
 
-
-
         insertWork("17-06-07", 3000);
         insertWork("17-06-10", 14400);
         insertWork("17-06-15", 10000);
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         insertWork("17-06-25", 1800);
         insertWork("17-06-27", 28800);
         insertWork("17-06-27", 65646);
-
 
         insertQuest(1, "첫 출석");
         insertQuest(2, "출석 3회");
@@ -70,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
         insertQuest(202, "누적 30시간 달성");
         insertQuest(301, "코인 10개 달성");
         insertQuest(302, "코인 30개 달성");
-
-
 
         getSupportFragmentManager().beginTransaction().add(R.id.container, todayFragment).commit();
 
