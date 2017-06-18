@@ -18,6 +18,9 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * Created by Owner on 2017-05-20.
+ */
 
 public class QuestFragment extends Fragment {
     MainActivity activity;
@@ -26,10 +29,9 @@ public class QuestFragment extends Fragment {
     String sql;
     Cursor cursor;
     SQLiteDatabase database;
+    int total, days, focus, coin;
 
     ArrayList<QuestItem> quest = new ArrayList<QuestItem>();
-
-
 
     @Override
     public void onAttach(Context context) {
@@ -49,13 +51,41 @@ public class QuestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         quest.clear();
-        quest.add(new QuestItem(R.drawable.img01, 1, "너란 봄"));
-        quest.add(new QuestItem(R.drawable.img02, 2, "KNOCK KNOCK"));
-        quest.add(new QuestItem(R.drawable.img03, 3, "얼굴 찌프리지 말아요"));
-        quest.add(new QuestItem(R.drawable.img04, 4, "REALLY REALLY"));
-        quest.add(new QuestItem(R.drawable.img05, 5,  "I'LL BE YOURS"));
-        quest.add(new QuestItem(R.drawable.img06, 6,  "낮 보다는 밤"));
-        quest.add(new QuestItem(R.drawable.img07, 7, "SHES A BABY"));
+
+        openDatabase("Tim.db");
+
+        sql = "select q_id, q_number, q_name  from quest";
+
+        cursor = database.rawQuery(sql, null);
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToNext();
+            int q_id = cursor.getInt(0);
+            int q_number = cursor.getInt(1);
+            String q_name = cursor.getString(2);
+            String q_img = "@drawable/img_" + q_number;
+            int resId = getActivity().getResources().getIdentifier(q_img, "drawable", getActivity().getPackageName());
+
+            quest.add(new QuestItem(resId, q_number, q_name));
+        }
+
+        sql = "select w_id, w_date, w_time  from work group by w_date";
+
+        cursor = database.rawQuery(sql, null);
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            cursor.moveToNext();
+
+            int w_time = cursor.getInt(2);
+
+            total += w_time;
+        }
+
+        sql = "select w_id from work group by w_date";
+        cursor = database.rawQuery(sql, null);
+
+
+
 
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_quest, container, false);
@@ -87,8 +117,8 @@ public class QuestFragment extends Fragment {
                 String questName = questItem.getName();
 
                 Toast.makeText(getActivity(),
-                        questName + "입니다.",
-                        Toast.LENGTH_LONG).show();
+                        questName + " 업적입니다.",
+                        Toast.LENGTH_SHORT).show();
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("img", quest.get(position).resId);
@@ -175,5 +205,14 @@ public class QuestFragment extends Fragment {
 
     public void openDatabase(String databaseName) {
         database = getActivity().openOrCreateDatabase(databaseName, MODE_PRIVATE, null);
+    }
+
+    // quest 테이블 입력 메소드
+    public void insertQuest(int number, String name) {
+        String sql = "insert into quest (q_number, q_name) values(?, ?);";
+
+        Object[] params = {number, name};
+
+        database.execSQL(sql, params);
     }
 }

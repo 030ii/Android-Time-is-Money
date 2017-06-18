@@ -8,8 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/* 아이템을 위한 XML 레이아웃은 LinearLayout과 같은
-   레이아웃 클래스를 상속하는 클래스를 만들어 설정함 */
 public class QuestLayout extends LinearLayout {
     Context mContext;
     LayoutInflater inflater;

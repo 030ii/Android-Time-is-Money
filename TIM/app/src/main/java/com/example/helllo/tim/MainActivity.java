@@ -1,5 +1,6 @@
 package com.example.helllo.tim;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,12 +17,12 @@ import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
-    Fragment1 fragment1;
+    TodayFragment todayFragment;
     RecordFragment fragment2;
     QuestFragment fragment3;
     Button button;
     SQLiteDatabase database;
-    String sql;
+    String sql; // sql 쿼리문
     final int REQUEST_CODE = 1001; // 타이머 엑티비티
 
 
@@ -39,30 +40,40 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fragment1 = new Fragment1();
+        todayFragment = new TodayFragment();
         fragment2 = new RecordFragment();
         fragment3 = new QuestFragment();
 
 
-
         openDatabase("Tim.db");
-
         sql = "delete from work";
         database.execSQL(sql);
-
-        insertWork("17-06-07", 7200);
-        insertWork("17-06-10", 10000);
-        insertWork("17-06-15", 5253);
-        insertWork("17-06-18", 3000);
-        insertWork("17-06-25", 1000);
-        insertWork("17-06-27", 500);
-
-        //insertQuest(153, "굿굿");
-        //selectData("work");
-        //selectData("quest");
+        sql = "delete from quest";
+        database.execSQL(sql);
 
 
-        getSupportFragmentManager().beginTransaction().add(R.id.container, fragment1).commit();
+
+        insertWork("17-06-07", 3000);
+        insertWork("17-06-10", 14400);
+        insertWork("17-06-15", 10000);
+        insertWork("17-06-18", 7200);
+        insertWork("17-06-25", 1800);
+        insertWork("17-06-27", 28800);
+        insertWork("17-06-27", 65646);
+
+
+        insertQuest(1, "첫 출석");
+        insertQuest(2, "출석 3회");
+        insertQuest(101, "집중 1회 달성");
+        insertQuest(102, "집중 3회 달성");
+        insertQuest(201, "누적 10시간 달성");
+        insertQuest(202, "누적 30시간 달성");
+        insertQuest(301, "코인 10개 달성");
+        insertQuest(302, "코인 30개 달성");
+
+
+
+        getSupportFragmentManager().beginTransaction().add(R.id.container, todayFragment).commit();
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab().setText("오늘 기록"));
@@ -76,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Fragment selected = null;
                 if (position == 0) {
-                    selected = fragment1;
+                    selected = todayFragment;
                 } else if (position == 1) {
                     selected = fragment2;
                 } else if (position == 2) {
@@ -106,17 +117,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
     }
 
     // DB 오픈 메소드
     public void openDatabase(String databaseName) {
-
         DatabaseHelper helper = new DatabaseHelper(this, databaseName, null, 1);
         database = helper.getWritableDatabase();
-        //database = openOrCreateDatabase(databaseName, MODE_PRIVATE, null);
-
     }
 
     // 테이블 생성 메소드
@@ -126,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 sql = "create table " + tableName + "(w_id integer PRIMARY KEY autoincrement, w_date date, w_time integer)";
                 database.execSQL(sql);
             } else if (tableName == "quest") {
-                sql = "create table " + tableName + "(q_id integer PRIMARY KEY autoincrement, q_number integer, q_name text)";
+                sql = "create table " + tableName + "(q_id integer PRIMARY KEY autoincrement, q_number integer unique, q_name text)";
                 database.execSQL(sql);
             }
         }
@@ -134,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     // work 테이블 입력 메소드
     public void insertWork(String date, int time) {
-        String sql = "insert into work (w_date, w_time) values(?, ?)";
+        String sql = "insert into work (w_date, w_time) values(?, ?);";
 
         Object[] params = {date, time};
 
@@ -167,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                 String w_date = cursor.getString(1);
                 int w_time = cursor.getInt(2);
 
-                //println("#" + i + " -> " + w_id + ", " + w_date + ", " + w_time);
+                //println("#" + i + " -> " + w_id + ", " + w_date + ", " + w_time); // 출력 테스트용
             }
             cursor.close();
 
@@ -181,10 +187,9 @@ public class MainActivity extends AppCompatActivity {
                 int q_number = cursor.getInt(1);
                 String q_name = cursor.getString(2);
 
-                //println("#" + i + " -> " + q_id + ", " + q_number + ", " + q_name);
+                //println("#" + i + " -> " + q_id + ", " + q_number + ", " + q_name); // 출력 테스트용
             }
             cursor.close();
-
         }
     }
 

@@ -1,6 +1,6 @@
 package com.example.helllo.tim;
 
-//데이터를 담아둘 DTO 클래스 선언(DTO:Data Transfer Object)
+//데이터를 담아둘 DTO 클래스 선언
 public class QuestItem {
 
     int resId; // 업적 이미지 id

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/settingBg"
     android:orientation="vertical">
 
     <com.example.helllo.tim.HorizontalListView
@@ -12,11 +11,24 @@
         android:layout_gravity="bottom"
         android:foregroundGravity="bottom" />
 
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/recTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"/>
+        android:gravity="top|center"
+        android:lineSpacingExtra="10dp"
+        android:textColor="@color/settingBg"
+        android:textSize="21sp" />
+
+    <TextView
+        android:id="@+id/goalTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="50dp"
+        android:text="그래프를 터치하세요!"
+        android:textSize="18sp"
+        android:lineSpacingExtra="8dp"/>
+
 
 </LinearLayout>

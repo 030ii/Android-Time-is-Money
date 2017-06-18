@@ -11,22 +11,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.helllo.tim.R.layout.record_item;
 
+/**
+ * Created by Owner on 2017-05-20.
+ */
 
 public class RecordFragment extends Fragment {
     MainActivity activity;
     MyAdapter adapter;
     HorizontalListView listView;
-    String sql;
+    String sql, info,  goalTime, date, year, month, day;
+    int time, total, days, dayTotal;
     Cursor cursor;
     SQLiteDatabase database;
+    TextView recTextView, goalTextView;
 
-    ArrayList<com.example.helllo.tim.RecordItem> record = new ArrayList<com.example.helllo.tim.RecordItem>();
+    ArrayList<RecordItem> record = new ArrayList<RecordItem>();
 
     @Override
     public void onAttach(Context context) {
@@ -47,9 +53,12 @@ public class RecordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         record.clear();
 
-        sql = "select w_id, w_date, w_time  from work";
-
         openDatabase("Tim.db");
+
+        sql = "select w_id, w_date, w_time  from work group by w_date";
+
+        total = 0;
+        days = 0;
 
         cursor = database.rawQuery(sql, null);
 
@@ -59,15 +68,23 @@ public class RecordFragment extends Fragment {
             String w_date = cursor.getString(1);
             int w_time = cursor.getInt(2);
             record.add(new RecordItem(w_id, w_time, w_date));
+            total += w_time;
         }
+
+        sql = "select count(*) from work group by w_date";
+        cursor = database.rawQuery(sql, null);
+        days = cursor.getCount();
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_record, container, false);
 
         // 어댑터 객체 생성
         adapter = new MyAdapter(getActivity(), record_item, record);
-        listView = (HorizontalListView) rootView.findViewById(R.id.recListView);
+
         //listView 레이아웃 참조
-        //listView = (ListView) rootView.findViewById(R.id.recListView);
+        listView = (HorizontalListView) rootView.findViewById(R.id.recListView);
+
+        recTextView = (TextView) rootView.findViewById(R.id.recTextView);
+        goalTextView = (TextView) rootView.findViewById(R.id.goalTextView);
 
         //어댑터 객체를 리스트 뷰에 설정
         listView.setAdapter(adapter);
@@ -84,17 +101,27 @@ public class RecordFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //position을 이용해 어댑터에서 아이템을 가져옴
-                RecordItem recordItem = (RecordItem) adapter.getItem(position);
 
                 Bundle bundle = new Bundle();
-                bundle.putInt("img", record.get(position).r_id);
                 bundle.putInt("time", record.get(position).r_time);
                 bundle.putString("date", record.get(position).r_date);
+
+                date = bundle.getString("date");
+                year = date.substring(0, 2);
+                month = date.substring(3, 5);
+                day = date.substring(6, 8);
+                time = bundle.getInt("time");
+                info = "20" + year + "년 " + month + "월 " + day + "일의 집중 시간은 \n" + time/3600 + "시간 "
+                        + time%3600/60 + "분으로 코인 " + time/1800 + "개를 적립하였습니다.";
+                goalTime = "현재 목표시간 : " + "2" + "시간 \n 총 집중시간 : " + total/86400 + "일 " + total%86400/3600 + "시간 " +
+                        total%86400%3600/60 + "분 \n Tim 사용일 수 : " + days + "일\n" + " 총 코인 개수 : " + total/1800 + "개";
+
+                recTextView.setText(info); // recTextView에 출력
+                goalTextView.setText(goalTime);
+
             }
         });//end of setOnItemClickListener
-
-
-
+        cursor.close();
         return rootView;
     }
 
@@ -113,10 +140,8 @@ public class RecordFragment extends Fragment {
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        /* 어댑터를 리스트뷰에 설정하면 리스트뷰(위젯)가 자동 호출함
-                - 리스트뷰가 아댑터에게 요청하는 메서드들... */
 
-        /* 어댑터에서 관리하고 있는 데이터(아이템)의 갯수를 반환
+        /* 어댑터에서 관리하고 있는 아이템의 갯수를 반환
            (itemsList의 크기(size) 반환) */
         @Override
         public int getCount() {
@@ -159,10 +184,11 @@ public class RecordFragment extends Fragment {
             //아이템의 인덱스값(position)을 이용해 리스트에 들어있는 아이템을 가져옴
             RecordItem items = record.get(position);
 
-            //아이템에서 이미지 리소스 id를 가져와, 레이아웃에 이미지 설정
+            //아이템에서 날짜를 가져와, 레이아웃에 날짜 설정
             recordLayout.setDate(items.getDate());
-            //아이템에서 이름을 가져와, 레이아웃에 이름 설정
+            //아이템에서 시간을 가져와, 레이아웃에 시간 설정
             recordLayout.setTime(items.getTime());
+
 
             return recordLayout;//레이아웃을 리턴
         }//end of getView()

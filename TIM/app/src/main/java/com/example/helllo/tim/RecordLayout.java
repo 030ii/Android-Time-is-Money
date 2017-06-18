@@ -2,18 +2,18 @@ package com.example.helllo.tim;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/* 아이템을 위한 XML 레이아웃은 LinearLayout과 같은
-   레이아웃 클래스를 상속하는 클래스를 만들어 설정함 */
 public class RecordLayout extends LinearLayout {
     Context mContext;
     LayoutInflater inflater;
-
+    SharedPreferences setting;
+    SharedPreferences.Editor editor;
     TextView date, time;
 
     //생성자-1
@@ -43,11 +43,19 @@ public class RecordLayout extends LinearLayout {
         //부분화면 레이아웃에 정의된 객체 참조
         time = (TextView) findViewById(R.id.graph);
         date = (TextView) findViewById(R.id.date);
+
+        setting = getContext().getSharedPreferences("setting", Activity.MODE_PRIVATE);
+        editor = setting.edit();
     }//end of init()
 
     public void setTime(int time) {
-        this.time.setHeight(time/60);
-        this.time.setBackgroundColor(Color.parseColor("#4C545A"));
+        int goal = setting.getInt("goal", 7200);
+        this.time.setHeight(time/60); // 초 단위를 분 단위로 바꾸어 픽셀값으로 사용.
+        if (time >= goal) {
+            this.time.setBackgroundColor(Color.parseColor("#328C8B")); //#4C545A
+        } else {
+            this.time.setBackgroundColor(Color.parseColor("#242D37")); //#4C545A
+        }
     }
 
     public void setDate(String date) {
