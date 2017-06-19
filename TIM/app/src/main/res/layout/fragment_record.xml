@@ -7,7 +7,7 @@
     <com.example.helllo.tim.HorizontalListView
         android:id="@+id/recListView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_gravity="bottom"
         android:foregroundGravity="bottom" />
 
@@ -17,8 +17,9 @@
         android:layout_height="wrap_content"
         android:gravity="top|center"
         android:lineSpacingExtra="10dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/settingBg"
-        android:textSize="21sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/goalTextView"
@@ -27,7 +28,7 @@
         android:gravity="center"
         android:paddingTop="50dp"
         android:text="그래프를 터치하세요!"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:lineSpacingExtra="8dp"/>
 
 

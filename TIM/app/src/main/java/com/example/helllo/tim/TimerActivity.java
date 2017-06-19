@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,9 +75,11 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             wasRunnig = savedInstanceState.getBoolean("wasRunningState");
         }
 
+        /* 상태 바 제거 */
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
         setContentView(R.layout.activity_timer);
 
-        /* sharedPreferences를 위해 */
         setting = getSharedPreferences("setting", Activity.MODE_PRIVATE);
         editor = setting.edit();
 
@@ -159,14 +162,13 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     public void onSettingBtnClicked (){
         Intent intent = new Intent(TimerActivity.this, SettingActivity.class);
         startActivityForResult(intent, REQUEST_CODE_SETTING);
-        // @TODO: SharedPreferences -> settingActivity에서 설정값
     }
 
     /* setting 액티비티에서 timer 액티비티로 돌아왔을 때에 대한 Activity Result 메서드 */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // @TODO: 세팅 코드 완료되는거 보고 결정
+
     }
 
     /* 타이머 시작 메서드 */

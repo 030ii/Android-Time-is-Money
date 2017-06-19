@@ -1,6 +1,8 @@
 package com.example.helllo.tim;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -27,12 +29,16 @@ public class RecordFragment extends Fragment {
     MyAdapter adapter;
     HorizontalListView listView;
     String sql, info,  goalTime, date, year, month, day;
-    int time, total, days, dayTotal;
+    int time, total, days, dayTotal, goal;
     Cursor cursor;
     SQLiteDatabase database;
     TextView recTextView, goalTextView;
 
     ArrayList<RecordItem> record = new ArrayList<RecordItem>();
+
+    SharedPreferences setting;
+    SharedPreferences.Editor editor;
+
 
     @Override
     public void onAttach(Context context) {
@@ -113,7 +119,7 @@ public class RecordFragment extends Fragment {
                 time = bundle.getInt("time");
                 info = "20" + year + "년 " + month + "월 " + day + "일의 집중 시간은 \n" + time/3600 + "시간 "
                         + time%3600/60 + "분으로 코인 " + time/1800 + "개를 적립하였습니다.";
-                goalTime = "현재 목표시간 : " + "2" + "시간 \n 총 집중시간 : " + total/86400 + "일 " + total%86400/3600 + "시간 " +
+                goalTime = "현재 목표시간 : " + goal/3600 + "시간 " + goal%60 + "분\n 총 집중시간 : " + total/86400 + "일 " + total%86400/3600 + "시간 " +
                         total%86400%3600/60 + "분 \n Tim 사용일 수 : " + days + "일\n" + " 총 코인 개수 : " + total/1800 + "개";
 
                 recTextView.setText(info); // recTextView에 출력
@@ -196,5 +202,18 @@ public class RecordFragment extends Fragment {
 
     public void openDatabase(String databaseName) {
         database = getActivity().openOrCreateDatabase(databaseName, MODE_PRIVATE, null);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+         /* sharedPreferences를 위해 */
+        setting = getActivity().getSharedPreferences("setting", Activity.MODE_PRIVATE);
+        editor = setting.edit();
+
+        goal = setting.getInt("goal",7200);
+
+
     }
 }
